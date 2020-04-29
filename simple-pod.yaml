@@ -1,9 +1,9 @@
 apiVersion: v1
-kind: Pod
+kind: Pod # Podはコンテナの集合体。最低一つのコンテナを持つ。このKindに何が入るかでyamlのフォーマットが変わる ReplicaSet, Deployment、など多数
 metadata:
     name: simple-echo
 spec:
-    containers:
+    containers: # Podを構成するコンテナ群を記載
     - name: nginx
       image: gihyodocker/nginx-proxy:latest
       env:
@@ -15,3 +15,6 @@ spec:
       image: gihyodocker/echo:latest
       ports:
       - containerPort: 8080
+# Podには1つのIPアドレスが割り当てられる。
+# なので同じポッドであればlocalhostで参照できる
+# 仮想IPアドレスで別のPodにアクセスすることも可能
